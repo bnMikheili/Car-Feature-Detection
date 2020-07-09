@@ -1,8 +1,8 @@
 import tensorflow.compat.v1 as tf
+import cv2
 from PIL import Image
 import numpy as np
-
-from utils import load_tflite_model
+from datetime import datetime
 
 # tf.disable_v2_behavior()
 
@@ -11,6 +11,26 @@ MOBILENET_SSD_PATH = 'models/mobilenet_ssd.tflite'
 COCO_INP_SIZE = 300
 CAR_ID = 2
 CAR_THRESHOLD = 0.25
+
+
+def load_tflite_model(tf_model_path):
+    """
+    Loads tflite model from a given path
+
+    Args:
+        tf_model_path (str): Path to the model
+    
+    Returns:
+        (interpreter, input_details, output_details): 
+        tf.lite.Interpreter, interpreter's input and output details 
+    """
+    # Load the tfline model and allocate tensors
+    interpreter = tf.lite.Interpreter(model_path=tf_model_path)
+    interpreter.allocate_tensors()
+    # Get input and output tensors.
+    input_details = interpreter.get_input_details()
+    output_details = interpreter.get_output_details()
+    return interpreter, input_details, output_details
 
 interpreter, input_details, output_details = load_tflite_model(
     MOBILENET_SSD_PATH)
@@ -67,5 +87,6 @@ def coco_detection(img):
     boxes, confidence, classes, nums = bbox[0], scores[0], classes[0], nums[0]
 
     return boxes, confidence, classes, nums
-
+now = datetime.now()
 print(car_image(np.array(Image.open("/home/misho/Downloads/car.jpg"))))
+print(datetime.now()-now)
