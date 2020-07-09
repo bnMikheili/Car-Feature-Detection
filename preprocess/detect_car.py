@@ -87,6 +87,3 @@ def coco_detection(img):
     boxes, confidence, classes, nums = bbox[0], scores[0], classes[0], nums[0]
 
     return boxes, confidence, classes, nums
-now = datetime.now()
-print(car_image(np.array(Image.open("/home/misho/Downloads/car.jpg"))))
-print(datetime.now()-now)
