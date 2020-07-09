@@ -6,8 +6,9 @@ from datetime import datetime
 
 from detect_car import car_image
 
-DATA_PATH = '/home/misho/Uni/Vision/YOLO/keras-YOLOv3-model-set/Myauto_data/Car_Images/{}/'
-CSV_PATH = '/home/misho/Uni/Vision/YOLO/keras-YOLOv3-model-set/Myauto_data/MyAuto_ge_Cars_Data.csv'
+DATA_PATH = 'Myauto_data/Car_Images/{}/'
+CSV_PATH = 'Myauto_data/MyAuto_ge_Cars_Data.csv'
+CAR_IMAGE_DF = 'CAR_IMAGE_DF.csv'
 
 def get_car_images():
     """
@@ -31,4 +32,4 @@ def get_car_images():
         if len(images) != 0:
             images = images[:-1]
         car_image_df = car_image_df.append(pd.DataFrame({'ID':[int(ID)], 'images':[images]}))
-    car_image_df.to_csv('CAR_IMAGE_DF.csv', index=False)
+    car_image_df.to_csv(CAR_IMAGE_DF, index=False)
