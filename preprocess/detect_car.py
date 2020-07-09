@@ -1,10 +1,6 @@
 import tensorflow.compat.v1 as tf
 import cv2
-from PIL import Image
 import numpy as np
-from datetime import datetime
-
-# tf.disable_v2_behavior()
 
 MOBILENET_SSD_PATH = 'models/mobilenet_ssd.tflite'
 
