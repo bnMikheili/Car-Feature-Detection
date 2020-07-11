@@ -76,6 +76,18 @@ def _get_number_of_images(id):
     return len(images)
 
 
+def _get_path(a):
+    """
+    Returns image path in a folder structure
+
+    Args:
+        a: Image data dataframe row
+    Returns:
+        (str): Generated path
+    """
+    return '/'+a.ID+'/'+a.img_index
+
+
 def generate_image_oriented_dataset(df):
     """
     Generates new dataset for each image containing
@@ -86,12 +98,14 @@ def generate_image_oriented_dataset(df):
     Returns:
         (pd.DataFrame): Dataframe
     """
+    df['img_num'] = df.ID.apply(_get_number_of_images)
+
     tmp_list = {'ID': [], 'Price ($)': [], 'Levy ($)': [], 'Manufacturer': [], 'Model': [], 'Prod. year': [],
-                'Category': [], 'Leather interior': [], 'Fuel type': [], 'Engine volume': [], 'Mileage': [],
+               'Category': [], 'Leather interior': [], 'Fuel type': [], 'Engine volume': [], 'Mileage': [],
                 'Cylinders': [], 'Gear box type': [], 'Drive wheels': [], 'Doors': [], 'Wheel': [], 'Color': [],
                 'Interior color': [], 'Airbags': [], 'VIN': [], 'img_index': [], 'is_car': []}
 
-    for i in df.index:
+   for i in df.index:
         curr_row = df.iloc[i]
         try:
             ls = [int(x) for x in curr_row.images.split('_')]
@@ -108,4 +122,5 @@ def generate_image_oriented_dataset(df):
             tmp_list['is_car'].append('1' if j in ls else '0')
 
     img_data = pd.DataFrame(tmp_list)
+    img_data['path'] = img_data.apply(_get_path, axis=1)
     return img_data
