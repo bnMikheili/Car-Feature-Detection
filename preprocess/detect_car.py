@@ -1,5 +1,4 @@
 import tensorflow.compat.v1 as tf
-import cv2
 import numpy as np
 
 MOBILENET_SSD_PATH = 'models/mobilenet_ssd.tflite'
