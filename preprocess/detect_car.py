@@ -1,12 +1,7 @@
 import tensorflow.compat.v1 as tf
-import cv2
-from PIL import Image
 import numpy as np
-from datetime import datetime
 
-# tf.disable_v2_behavior()
-
-MOBILENET_SSD_PATH = 'models/mobilenet_ssd.tflite'
+MOBILENET_SSD_PATH = 'preprocess/models/mobilenet_ssd.tflite'
 
 COCO_INP_SIZE = 300
 CAR_ID = 2
@@ -87,6 +82,9 @@ def coco_detection(img):
     boxes, confidence, classes, nums = bbox[0], scores[0], classes[0], nums[0]
 
     return boxes, confidence, classes, nums
+<<<<<<< HEAD:preprocess/detect_car.py
 now = datetime.now()
 print(car_image(np.array(Image.open("/home/misho/Downloads/car.jpg"))))
 print(datetime.now()-now)
+=======
+>>>>>>> bb5d927e55fd396a5fec09dc6099eb79c46f5996:car_detection/detect_car.py
