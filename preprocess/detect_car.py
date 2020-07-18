@@ -1,7 +1,7 @@
 import tensorflow.compat.v1 as tf
 import numpy as np
 
-MOBILENET_SSD_PATH = 'models/mobilenet_ssd.tflite'
+MOBILENET_SSD_PATH = 'preprocess/models/mobilenet_ssd.tflite'
 
 COCO_INP_SIZE = 300
 CAR_ID = 2
