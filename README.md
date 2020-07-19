@@ -6,7 +6,9 @@ To train models on those tasks first step was to identify images that show the c
 
 As long as there are several images for each car, I decided that making the data `image oriented` would be the best approach for the solution, so I've transformed it in such way that each image of the car shares it's features. Model get's an image as input and predicts those car features for the image.
 
-For each above mentioned tasks I cleared the data. Because of the huge amount of labels, most of which apperad several times in the dataset, I decided to drop those labels and give more attention to normal ones. Even after doing so, the dataset was still quite imbalanced, so I had to balance it by taking samples for each label with restriction on maximum number.
+For each above mentioned tasks I cleared the data. Because of the huge amount of labels, most of which apperad several times in the dataset, I decided to drop those labels and give more attention to normal ones. Even after doing so, the dataset was still quite imbalanced, so I had to balance it by taking samples for each label with restriction on maximum number. 
+
+`To take a look a the workflow of preprocessing check FLOW.ipynb`
 
 ## Modelling
 When it came to choosing a model, it was obvious that a simple architecture with several CNN layers wouldn't be able to afford learning the complexity of the task. So I chose to take the `RESNET18` architecture. Because of it's huge amount of weight parameters (>11M), not to waste time on training it from scratch I decided to make `Transfer Learning` using it's pretrained weights, so I used it as a feature extractor and expanded it with pyramid architecture.
