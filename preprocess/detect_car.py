@@ -40,6 +40,7 @@ def car_image(img):
     Returns:
         (bool): True/False whether it's a car image or not
     """
+    img = img[:,:,:3]
     boxes, confidence, classes, nums = coco_detection(img)
     # Go through the prediction results
     for i in range(int(nums)):
